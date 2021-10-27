@@ -1,4 +1,5 @@
 const Consumer = require("../model/consumerModel");
+const Appointment = require("../model/appointmentModel");
 const catchAsync = require("../utils/catchAsync");
 
 //Find All Consumers
@@ -19,11 +20,25 @@ exports.getAConsumer = catchAsync(async (req, res, next) => {
     path: "appointments",
     select: "_professionalId professionalsName date time -_consumerId",
   });
+  const detailedAppointmentStat = await Appointment.aggregate([
+    {
+      $match: { _consumerId: consumer._id },
+    },
+    {
+      $group: {
+        _id: "$date",
+        num_of_appointments_in_the_day: { $sum: 1 },
+        times: { $push: "$time" },
+        professionalsName: { $push: "$professionalsName" },
+      },
+    },
+  ]);
 
   res.status(200).json({
     message: "successful",
     data: {
       consumer,
+      detailedAppointmentStat,
     },
   });
 });
