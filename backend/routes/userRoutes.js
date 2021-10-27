@@ -15,8 +15,12 @@ router.use(authmiddlewares.protectRoute);
 
 //Consumer Routes
 router.route("/consumers").get(consumerController.getAllConsumers);
+router.route("/consumers/appointments").get(consumerController.getAConsumer);
 
 //Professional Routes
 router.route("/professionals").get(professionalController.getAllProfessionals);
+router
+  .route("/professionals/appointments")
+  .get(professionalController.getAProfessional);
 
 module.exports = router;
