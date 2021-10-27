@@ -1,0 +1,139 @@
+.doctorText {
+  font-size: 18px;
+  margin: 15px !important;
+  margin-left: 50px;
+}
+
+.diseaseSelect {
+  width: 20%;
+  font-size: 18px;
+  height: 35px;
+  border-color: transparent;
+  border-radius: 10px;
+}
+
+.diseaseSelect:focus {
+  outline: none;
+}
+
+.doctorFind {
+  width: 85%;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  background-color: #eaf6e1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.profName {
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+.profNameSearch {
+  font-size: 18px;
+  height: 25px;
+  width: 260px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+.profNameSearch:focus {
+  outline: none;
+}
+
+.searchButton {
+  background-color: #86d382;
+  color: white;
+  font-size: 17px;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 130px;
+  border-radius: 15px;
+  margin-left: 3%;
+  transition: 0.8s;
+}
+.searchButton:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #b7e5b4;
+}
+.searchButton:focus {
+  box-shadow: 0px;
+}
+
+.doctorCards {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  margin: auto;
+  gap: 10%;
+  margin-top: 4%;
+}
+
+.profApproveCard {
+  /* margin: 50px !important; */
+  margin: 30px 0 30px 0;
+  padding: 20px !important;
+  height: 230px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 20px !important;
+  border-radius: 10px !important;
+  box-shadow: 1px 1px 1px #373d37 !important;
+}
+
+.profApproveCard:hover {
+  cursor: pointer !important;
+  box-shadow: 3px 3px 3px #86d382 !important;
+}
+
+.profImg {
+  width: 35% !important;
+}
+
+.profLabels {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px;
+}
+
+.profName {
+  font-family: "Poppins" !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
+}
+
+.profSpec1 {
+  margin-top: -12px;
+  font-family: "Poppins" !important;
+  font-size: 16px !important;
+}
+
+.profSpec2 {
+  margin-top: 10px;
+  font-family: "Poppins" !important;
+  font-size: 14px !important;
+}
+
+.doctorTextDivider {
+  border-left: 2px solid #86d382;
+  height: 60px;
+  margin-left: 50px;
+}
+
+.gridContainer {
+  padding-left: 40px;
+  padding-right: 40px;
+}
