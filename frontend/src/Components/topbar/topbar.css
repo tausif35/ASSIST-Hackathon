@@ -1,0 +1,45 @@
+.topbarDiv {
+  padding-top: 10px;
+  height: 80px;
+  box-shadow: 0px 3px 3px #ababab;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.logoImage {
+  width: 300px;
+  float: left;
+}
+
+.middleLogoImage {
+  width: 300px;
+  display: block;
+  margin: auto;
+  margin-bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.topMenu {
+  list-style: none;
+  float: right;
+  margin-right: 80px;
+  font-size: 18px;
+}
+.topMenu > li {
+  display: inline;
+  float: right;
+  padding-left: 20px;
+}
+
+.navbarLinks {
+  color: black;
+  text-decoration: none;
+}
+.selected {
+  color: #00c000;
+  font-weight: bold;
+}
+
+img:hover {
+  cursor: pointer;
+}

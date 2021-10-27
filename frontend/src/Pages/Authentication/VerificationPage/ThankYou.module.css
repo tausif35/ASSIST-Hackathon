@@ -1,0 +1,44 @@
+.mainDiv{
+  height: 100vh;
+}
+.mainThankYouDiv{
+    display: flex;
+    justify-content: center;
+    background-color: #EFF5E9;
+    width: 100%;
+}
+.thankYouDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height:fit-content;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    color: black;
+    margin-top: 50px;
+    margin-bottom:37px;
+    border-radius: 20px;
+}
+.thankYouText{
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 75px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    text-align: center;
+    color: #86D382;
+}
+.thankYouText2{
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 16px;
+    /* line-height: 75px; */
+    margin-top: 30px !important;
+    margin-bottom: 0px !important;
+    text-align: center;
+    color: #2e2e2e;
+}
