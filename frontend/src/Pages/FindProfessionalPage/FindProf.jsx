@@ -14,15 +14,7 @@ const FindProf = () => {
   const [name, setName] = useState("")
 
 
-  useEffect(() => {
-    axios.get("/api/users/professionals")
-      .then(response => {
-        setDoctors(response.data.data.professionals)
-      }).catch(err => {
-        console.log(err);
-      })
-
-  }, [])
+  
 
   useEffect(() => {
     setDoctorShow(doctors.filter(doc => doc.Specialization.includes(doctorType)))
@@ -77,7 +69,7 @@ const FindProf = () => {
         className={styles.gridContainer}
       >
         <Grid item xs={12} sm={6} md={4}>
-          <Card onClick={() => cardClicked()} variant="outlined" className={styles.profApproveCard}>
+          <Card onClick={() => cardClicked(1)} variant="outlined" className={styles.profApproveCard}>
 
             <CardMedia className={styles.profImg}
               component="img"
