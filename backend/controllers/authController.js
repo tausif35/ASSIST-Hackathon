@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Consumer = require("../model/consumerModel");
 const Professional = require("../model/professionalModel");
+const ApproveProfessional = require("../model/approveProfessionalModel");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
 
@@ -27,7 +28,7 @@ exports.signUser = catchAsync(async (req, res, next) => {
       //if the role is professional it first needs to be approved
       const { edu, degrees, work, research, achievment, specialization } =
         req.body;
-      newUser = new Professional({
+      newUser = new ApproveProfessional({
         fullname,
         email,
         password: hash,
