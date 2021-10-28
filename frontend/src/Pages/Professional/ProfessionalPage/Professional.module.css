@@ -1,0 +1,117 @@
+.mainDiv{
+  height: 100vh
+}
+
+.profileDiv{
+  margin: 20px;
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: row !important;
+  justify-content: flex-start !important;
+  /* align-items: center !important; */
+  gap: 20px;
+}
+
+.profInfo1{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.profImg{
+  height: 350px;
+  border: 5px solid #EAF7E1;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.profName{
+  margin-top: 20px !important;
+  font-family: "Oswald" !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
+}
+
+.profDegrees{
+  margin-top: -12px;
+  font-family: "Poppins" !important;
+  font-size: 16px !important;
+}
+
+h1{
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0px;
+  font-family: 'Oswald';
+}
+
+.profInfo2{
+  width: 100%;
+  padding: 20px 20px 20px 20px;
+  height: 350px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow-y: auto;
+  /* align-items:baseline; */
+}
+
+.infoTitle{
+  text-align: left !important;
+  margin-top: 20px;
+  font-family: "Oswald" !important;
+  color: #000000 !important;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+
+.infoDesc{
+  
+  font-family: "Poppins" !important;
+  font-size: 16px !important;
+}
+
+.infoTitle{
+  margin-top: 5px !important;
+}
+
+
+
+
+.btnDiv{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.btnDiv>*{
+  border: 2px solid #86D382 ;
+  /* background-color: #86D382 !important; */
+  color: #86D382 !important;
+  font-family: 'Poppins' !important;
+  width: 200px;
+  height: 40px;
+}
+.btnDiv>*:hover{
+  border: 2px solid #86D382 ;
+  
+}
+
+
+.profInfo2::-webkit-scrollbar{
+  background-color: #cecccc;
+  width: 5px;
+}
+
+.profInfo2::-webkit-scrollbar-thumb {
+  background-color: #86D382;    /* color of the scroll thumb */
+  border-radius: 1px;    
+}
