@@ -21,7 +21,7 @@ router
 router
   .route("/answers/:id")
   .get(qaController.getAnAnswer)
-  .patch(qaController.upvoteAPost);
+  .patch(qaController.upvoteAnAnswer);
 
 router.route("/myQuestions/:userId").get(qaController.getQuestionsOfAnUser);
 module.exports = router;

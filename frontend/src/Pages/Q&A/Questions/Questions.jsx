@@ -12,6 +12,7 @@ const Questions = () => {
     const [searchValue, setSearchValue] = useState("")
     const [askDiv,setAskDiv]=useState(false)
     useEffect(() => {
+        console.log("sure");
         axios.get("/api/qa")
             .then(res => {
                 const response = res.data.data
@@ -50,12 +51,11 @@ const Questions = () => {
 
     return (
         <div>
-            <Topbar list={["Group Chat", "Q&A", "Blogs", "Find Professionals"]} />
+            <Topbar list={[{link:"groupChat",base:"Group Chat"}, {link:"questions", base:"Q&A"}, {link:"blogs",base:"Blogs"}, {link:"findProfessionals", base:"Find Professionals"}]} />
             <div className={styles.topDiv}>
                 <div className={styles.searchDiv}>
                     <TextField onChange={(event) => { searchInputHandler(event) }} className={styles.searchInput} label="Search A Question" />
                     {/* this button should be removed */}
-                    <Button onClick={searchButtonClicked} className={styles.searchButton} variant="contained">Search</Button>
                 </div>
                 <div className={styles.askQuestion}>
                     <Button onClick={askQuestion} variant="contained" className={styles.askQuestionButton}>Ask a question</Button>

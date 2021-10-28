@@ -105,7 +105,7 @@ exports.answerAnQuestion = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.upvoteAPost = catchAsync(async (req, res, next) => {
+exports.upvoteAnAnswer = catchAsync(async (req, res, next) => {
   const ansId = req.params.id;
   const userId = req.user.id;
   const answer = await Answer.findById(ansId);

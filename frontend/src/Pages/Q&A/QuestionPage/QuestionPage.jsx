@@ -13,6 +13,7 @@ const QuestionPage = (props) => {
     const [answers, setAnswers] = useState([])
     const [liked, setLiked] = useState([])
     const [userId, setUserId] = useState("")
+    const [answerValue,setAnswerValue]=useState("")
     useEffect(() => {
         axios.get(`/api/qa/${id}`)
             .then(res => {
@@ -23,10 +24,13 @@ const QuestionPage = (props) => {
             })
     }, [])
 
+    const changeAnswerValue = (event) =>{
+        setAnswerValue(event.target.value)
+    }
+
     const heartClicked = (index, answerId) => {
         axios.patch(`/api/qa/answers/${answerId}`)
             .then(res => {
-                console.log(res);
                 setLiked(prev => [...prev, index])
             }).catch(err => {
                 console.log(err);
@@ -34,19 +38,30 @@ const QuestionPage = (props) => {
     }
 
     const unheartClicked = (index, answerId) => {
-        console.log(index,answerId);
         axios.patch(`/api/qa/answers/${answerId}`)
             .then(res => {
-                console.log(res);
                 setLiked(liked=>liked.filter(like => like !== index))
             }).catch(err => {
                 console.log(err);
             })
     }
 
+    const answerButtonHander=()=>{
+        const body={
+            answer:answerValue
+        }
+        axios.post(`/api/qa/${id}`,body)
+            .then(res=>{
+                setAnswerValue("")
+                setAnswers(prev=>[...prev,res.data.data.newAnswer])
+            }).catch(err=>{
+                console.log(err);
+            })
+    }
+
     return (
         <div>
-            <Topbar list={["Group Chat", "Q&A", "Blogs", "Find Professionals"]} />
+            <Topbar list={[{link:"groupChat",base:"Group Chat"}, {link:"questions", base:"Q&A"}, {link:"blogs",base:"Blogs"}, {link:"findProfessionals", base:"Find Professionals"}]} />
             <Card className={styles.questionCard}>
                 Q. {question}
             </Card>
@@ -68,12 +83,14 @@ const QuestionPage = (props) => {
                     <Card className={styles.newAnswerCard}>
                         <TextField
                             className={styles.answerBox}
+                            value={answerValue}
                             label="Write An Answer"
                             multiline
+                            onChange={(event)=>{changeAnswerValue(event)}}
                             rows={6}
                             maxRows={6}
                         />
-                        <Button className={styles.submitButton}>Submit</Button>
+                        <Button onClick={answerButtonHander} className={styles.submitButton}>Submit</Button>
                     </Card> : null
             }
         </div>
