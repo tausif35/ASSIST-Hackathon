@@ -7,6 +7,7 @@ import ThankYou from '../Pages/Authentication/VerificationPage/ThankYou'
 import Verification from '../Pages/Authentication/VerificationPage/Verification'
 import ProtectedRoute from './ProtectedRoute'
 import FindProf from '../Pages/FindProfessionalPage/FindProf'
+import UserChat from '../Pages/Chat/UserChat/UserChat'
 import Home from '../Pages/HomePage/Home'
 const Routes = () => {
     const [user, setUser] = useState(null);
@@ -28,6 +29,8 @@ const Routes = () => {
                 <Route path={"/blogs/new"} exact component={CreatePost} />
                 <Route path={"/blogs/post/:id"} exact component={BlogPost} /> */}
             <ProtectedRoute exact path={"/"} component={Home} />
+            <Route path={"/chat"} exact component={UserChat}></Route>
+            <Route path={"/chat/:id"} exact component={UserChat}></Route>
             <UserContext.Provider value={value}>
 
 
