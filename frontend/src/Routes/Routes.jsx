@@ -15,26 +15,36 @@ import Home from '../Pages/HomePage/Home'
 import VideoChat from '../Pages/videoChat/VideoChat'
 import Appointment from '../Pages/Professional/AppointmentPage/Appointment'
 import Professional from '../Pages/Professional/ProfessionalPage/Professional'
+import QuestionPage from '../Pages/Q&A/QuestionPage/QuestionPage'
+import Questions from '../Pages/Q&A/Questions/Questions'
+import GroupChatHome from '../Pages/GroupChat/GroupChatHome'
+import GroupChatRoom from '../Pages/GroupChat/GroupChatRoom'
+import AdminPanel from '../Pages/Admin/AdminPanel'
+import Profile from '../Pages/Profile/Profile'
 const Routes = () => {
   const [user, setUser] = useState(null);
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
     <Switch>
-
-
       <Route path={"/login"} exact component={Login} />
       <Route path={"/home"} exact component={Home} />
       <Route path={"/findProfessionals"} exact component={FindProf} />
       <Route path={"/questions"} exact component={Questions}></Route>
-            <Route path={"/question/:id"} exact component={QuestionPage}></Route> 
-
+      <Route path={"/question/:id"} exact component={QuestionPage}></Route>
+      <Route path={"/chat/:id"} exact component={UserChat} />
       <Route path={"/professional/:id"} exact component={Professional} />
       <Route path={"/professional/:id/appointment"} exact component={Appointment} />
-     
-                <Route path={"/blogs"} exact component={BlogHomePage} />
-                <Route path={"/blogs/new"} exact component={CreatePost} />
-                <Route path={"/blogs/post/:id"} exact component={BlogPost} /> 
+      <Route path={"/VideoCall/:id"} exact component={VideoChat} />
+      <Route path={"/blogs"} exact component={BlogHomePage} />
+      <Route path={"/blogs/new"} exact component={CreatePost} />
+      <Route path={"/blogs/post/:id"} exact component={BlogPost} />
+      <Route path={"/groupchat"} exact component={GroupChatHome} />
+      <Route path={"/groupchat/room/:id"} exact component={GroupChatRoom} />
+      <Route path={"/admin"} exact component={AdminPanel} />
+      <Route path={"/profile"} exact component={Profile} />
+
+
       <ProtectedRoute exact path={"/"} component={Home} />
       <UserContext.Provider value={value}>
 
