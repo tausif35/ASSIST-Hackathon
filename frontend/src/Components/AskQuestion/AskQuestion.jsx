@@ -1,10 +1,11 @@
-import { TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import React from 'react'
-
-const AskQuestion = () => {
+import styles from './AskQuestion.module.css'
+const AskQuestion = (props) => {
     return (
-        <div>
-            <TextField label="Ask a Question"></TextField>
+        <div className={styles.askQuestionDiv}>
+            <TextField multiline rows={6} maxRows={6} className={styles.textField} onChange={props.change} label="Ask a Question"></TextField>
+            <Button className={styles.askButton} onClick={props.click}>Ask</Button>
         </div>
     )
 }

@@ -1,0 +1,26 @@
+.askQuestionDiv{
+    width: 60%;
+    height: 70%;
+    background-color: #EFF5E9;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textField{
+    height: 100px !important;
+}
+
+.askButton{
+    width: 100px !important;
+    margin: auto;
+    margin-top: 50px !important;
+    background-color: #86D382 !important;
+    color: white !important;
+}
+
+.askButton:hover{
+    background-color: #86D382 !important;
+    color: white !important;
+}
