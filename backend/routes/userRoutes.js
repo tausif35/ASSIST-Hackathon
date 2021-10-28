@@ -13,6 +13,18 @@ router.post("/login", authController.login);
 //All routes after this middleware are protected
 router.use(authmiddlewares.protectRoute);
 
+router.patch(
+  "/updateMe/professional",
+  professionalController.uploadUserPhoto,
+  professionalController.updateMe
+);
+
+router.patch(
+  "/updateMe/consumer",
+  consumerController.uploadUserPhoto,
+  consumerController.updateMe
+);
+
 //Consumer Routes
 router.route("/consumers").get(consumerController.getAllConsumers);
 router.route("/consumers/appointments").get(consumerController.getAConsumer);

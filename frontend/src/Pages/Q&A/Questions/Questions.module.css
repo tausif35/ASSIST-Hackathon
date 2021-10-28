@@ -68,3 +68,8 @@
 .askQuestionButton:hover{
     background-color: #86D382 !important;
 }
+
+
+.askQuestionDiv{
+    margin-top: 100px;
+}

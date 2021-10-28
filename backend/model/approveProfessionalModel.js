@@ -17,6 +17,7 @@ const approveProfessionalSchema = new mongoose.Schema({
     default: 0,
   },
   password: String,
+  photo: String,
   Education_qualifications: {
     type: String,
     default: "NONE",

@@ -1,0 +1,36 @@
+.askQuestionDiv{
+    width: 80%;
+    height: 70%;
+    background-color: #EFF5E9;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center  !important;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.textField{
+    width: 90%;
+    padding: 20px;
+    /* height: 100px !important; */
+}
+
+.askButton{
+    width: 100px !important;
+    margin: auto;
+    /* margin-top: 50px !important; */
+    background-color: #86D382 !important;
+    color: white !important;
+}
+
+h1{
+    font-family: 'Poppins';
+    margin: 0px;
+}
+
+.askButton:hover{
+    background-color: #86D382 !important;
+    color: white !important;
+}
