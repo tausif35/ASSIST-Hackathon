@@ -140,7 +140,7 @@ const Home = () => {
       </div>
       <h3 className={styles.appointHeader}>Your Appointments</h3>
       <div className={styles.appointments}>
-        <h3>Your Appointments</h3>
+
         <Card variant="outlined" className={styles.appointmentCard}>
           <Typography
             className={styles.appointmentWith}

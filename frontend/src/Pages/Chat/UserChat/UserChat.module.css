@@ -1,0 +1,19 @@
+.mainChatDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #EFF5E9;
+}
+
+.firstDiv{
+    width: 400px;
+    height: 100vh;
+    border-left: 1px solid #d8d8d8;
+    background-color: white;
+}
+.secondDiv{
+    width: 1000px;
+    height: 100vh;
+    background-color: white;
+}

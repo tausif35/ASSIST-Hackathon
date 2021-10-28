@@ -1,0 +1,24 @@
+.videoChatDiv{
+  width: 80% !important;
+  margin-left: 10%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.userVideo{
+    width: 50%;
+    height: 500px;
+}
+.vidChatButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+.MyVideo{
+  width: 50%;
+  height: 500px;
+}

@@ -1,0 +1,24 @@
+.title{
+display: flex !important;
+  flex-direction: row !important;
+  flex-flow:row !important;
+  margin-bottom: 30px !important;
+  /* justify-content: center !important; */
+
+}
+.textfield{
+  float: left !important;
+  font-size:30px !important;
+  width: 100% !important;
+}
+
+.addIcon{
+  float: right !important;
+  font-size: 50px !important;
+  margin: 5px;
+}
+.addIcon:hover{
+  cursor: pointer;
+   position: relative;
+  top: -2px;
+}

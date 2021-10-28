@@ -1,0 +1,43 @@
+.bannerImg{
+  margin: auto;
+  width: 500px;
+  height: 100%;
+  object-fit:contain;
+}
+
+.banner{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  background-color: #EFF5E9;
+  width: 100%;
+}
+
+.postsDiv, .blogSearchDiv{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-top: 40px;
+  
+}
+
+.blogSearchDiv{
+  border-radius: 5px;
+   box-shadow: 1px 1px 1px 1px #f3f1f1;
+}
+
+.addBlogButton{
+  margin-right: 20px !important;
+  height: 80px;
+  width: 80px;
+    position: fixed !important;
+    bottom: 0px !important;
+    right: 0px !important; 
+}
+.addButton{
+  font-size: 70px !important;
+  color: #86D382;
+}
