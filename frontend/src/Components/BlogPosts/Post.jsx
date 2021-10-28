@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles'
-import Blog from './Blog.png'
+
 const useStyle = makeStyles({
   container: {
     border: '1px solid #d3cede',
@@ -35,9 +35,9 @@ const useStyle = makeStyles({
 })
 
 const Post = ({ post }) => {
-  const str="orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   console.log(post);
   const classes = useStyle();
+  const url = post.picture ? post.picture : `http://localhost:8080/${post.photo}`;
 
   const addEllipsis = (str, limit) => {
     return str.length > limit ? str.substring(0, limit) + '...' : str;
@@ -45,10 +45,11 @@ const Post = ({ post }) => {
 
   return (
     <Box className={classes.container}>
-      <img src={Blog} alt="post" className={classes.image} />
-      <Typography className={classes.heading}>{addEllipsis("About Mental Health", 20)}</Typography>
-      <Typography className={classes.textColor}>Author: Dr. Mohit Kamal</Typography>
-      <Typography className={classes.detail}>{addEllipsis(str, 100)}</Typography>
+      <img src={url} alt="post" className={classes.image} />
+      <Typography className={classes.textColor}>{post.category}</Typography>
+      <Typography className={classes.heading}>{addEllipsis(post.title, 20)}</Typography>
+      <Typography className={classes.textColor}>Author: {post.name}</Typography>
+      <Typography className={classes.detail}>{addEllipsis(post.body, 100)}</Typography>
     </Box>
   )
 }

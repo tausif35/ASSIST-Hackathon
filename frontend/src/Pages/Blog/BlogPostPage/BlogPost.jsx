@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from '../../../Helper/axios'
 import Topbar from '../../../Components/topbar/Topbar';
 import styles from './BlogPost.module.css';
-import url from './Blog.png'
+
 
 
 const BlogPost = (props) => {
@@ -12,32 +12,70 @@ const BlogPost = (props) => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
   const [name, setName] = useState("")
+  const [comments, setComments] = useState([])
+  const [comment, setComment] = useState("")
+  const [blogId, setBlogId] = useState("")
+  useEffect(() => {
+    axios.get(`/api/blogs/${props.match.params.id}`)
+      .then(res => {
+        const response = res.data.data.blog
+        setBlogId(response.id)
+        setTitle(response.title)
+        setName(response.name)
+        setDescription(response.body)
+        setImage(response.photo)
+        setComments(response.comments)
+      });
+  }, [])
+
+  const commentInputHandler = (event) => {
+    setComment(event.target.value)
+  }
+
+  const makeComment = () => {
+    const body = {
+      comment
+    }
+    if (comment.trim() !== "") {
+      axios.post(`/api/comments/${blogId}`, body)
+        .then(res => {
+          setComment("")
+          setComments(prev => [...prev, res.data.data.newComment])
+        }).catch(err => {
+          console.log(err);
+        })
+    }
+  }
+
+  const url = `http://localhost:8080/${image}`;
 
 
   return (
     <div className={styles.mainBlogPostDiv}>
-      <Topbar list={[{link:"groupChat",base:"Group Chat"}, {link:"questions", base:"Q&A"}, {link:"blogs",base:"Blogs"}, {link:"findProfessionals", base:"Find Professionals"}]} />
+      <Topbar list={[{ link: "groupChat", base: "Group Chat" }, { link: "questions", base: "Q&A" }, { link: "blogs", base: "Blogs" }, { link: "findProfessionals", base: "Find Professionals" }]} />
       <Box className={styles.container}>
         <img src={url} alt="post" className={styles.image} />
         <div className={styles.titleDiv}>
-          <Typography className={styles.heading}>A blog about mental health</Typography>
-          <Typography className={styles.textColor}>Author: Dr Mohit Kamal</Typography>
+          <Typography className={styles.heading}>{title}</Typography>
+          <Typography className={styles.textColor}>Author: {name}</Typography>
         </div>
-        <Typography className={styles.detail}>orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Typography>
+        <Typography className={styles.detail}>{description}</Typography>
         <Divider />
         <div className={styles.comments}>
           <Typography className={styles.commentHeading}>Comments:</Typography>
-          <Card className={styles.questionCard}>
-            <p className={styles.comment}>This is a very nice blog</p>
-          </Card>
-          <Card className={styles.questionCard}>
-            <p className={styles.comment}>Well written</p>
-          </Card>
+          {comments.map(comment => {
+            return (
+              <Card className={styles.questionCard}>
+                <p className={styles.comment}>{comment.name}: {comment.comment}</p>
+              </Card>
+            )
+          })}
+
 
           <div className={styles.commentBox}>
-            <TextField id="outlined-textarea" label="Write A Comment" variant="outlined" multiline className={styles.commentField} />
+            <TextField value={comment} onChange={(event) => { commentInputHandler(event) }} id="outlined-textarea" label="Write A Comment" variant="outlined" multiline className={styles.commentField} />
             <Button
-              // onClick={() => savePost()} 
+              onClick={() => makeComment()}
               variant="contained" style={{
                 background: '#86D382', marginLeft: '10px',
                 padding: '5px 10px 5px 10px',

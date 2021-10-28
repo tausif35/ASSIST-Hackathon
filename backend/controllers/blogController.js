@@ -18,7 +18,7 @@ exports.getAllBlogs = catchAsync(async (req, res) => {
 
 exports.uploadUserPhoto = multermiddlewares.multerFunc("blogs").single("photo");
 exports.createBlog = catchAsync(async (req, res, next) => {
-  console.log(req.file)
+  console.log(req.file, req.body)
   const { title, body, category } = req.body;
   const blog = await ApproveBlog.create({
     title,

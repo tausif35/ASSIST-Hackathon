@@ -1,5 +1,7 @@
 const ApproveProfessional = require("../model/approveProfessionalModel");
+const ApproveBlog = require("../model/approveBlogModel")
 const Professional = require("../model/professionalModel");
+const BlogPost = require("../model/blogModel")
 const catchAsync = require("../utils/catchAsync");
 
 //See all pending approvals for professionals

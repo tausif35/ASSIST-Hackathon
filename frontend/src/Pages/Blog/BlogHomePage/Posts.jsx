@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Grid, Box } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import axios from '../../../Helper/axios'
 import Post from '../../../Components/BlogPosts/Post'
 
-const Posts = () => {
-  const [posts, setPosts] = useState([]);
+const Posts = ({ posts }) => {
 
 
   return (
     <>
       {
-        <Grid item lg={3} sm={4} xs={12}>
-        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/blogs/post/${1}`}>
-          <Post/>
-        </Link>
-      </Grid>
+        posts.length ? posts.map(post => (
+          <Grid item lg={3} sm={4} xs={12}>
+            <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/blogs/post/${post._id}`}>
+              <Post post={post} />
+            </Link>
+          </Grid>
+        )) : <Box style={{ color: '878787', margin: '30px 80px', fontSize: 18 }}>
+          No data is available for selected category
+        </Box>
       }
     </>
   )

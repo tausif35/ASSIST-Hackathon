@@ -94,3 +94,13 @@
   cursor: pointer;
   box-shadow: 3px 3px 3px #ccc;
 }
+
+.chosenTime{
+  background-color: #86D382 !important;
+  color: white  !important;
+}
+
+.chosenTime:hover{
+  background-color: #86D382 !important;
+  color: white  !important;
+}
