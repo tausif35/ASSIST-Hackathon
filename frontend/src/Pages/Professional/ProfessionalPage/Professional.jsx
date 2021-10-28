@@ -20,7 +20,9 @@ const Professional = (props) => {
     history.push(`/professional/${props.match.params.id}/appointment`)
   }
 
-
+  const chatDoctorClicked = () => {
+    history.push(`/chat/1`)
+  }
 
 
 
@@ -83,7 +85,7 @@ const Professional = (props) => {
           </div>
           <Divider></Divider>
           <div className={styles.btnDiv}>
-            <Button className={styles.chatDoc} variant="outlined">Chat with doctor</Button>
+            <Button onClick={chatDoctorClicked} className={styles.chatDoc} variant="outlined">Chat with doctor</Button>
             <Button onClick={setAppointmentButtonClicked} className={styles.setApp}>Set Appointment</Button>
           </div>
         </Grid>
