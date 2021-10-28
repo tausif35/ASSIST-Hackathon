@@ -5,6 +5,9 @@ import Login from '../Pages/Authentication/LoginPage/Login'
 import SignUp from '../Pages/Authentication/SignUpPage/SignUp'
 import ThankYou from '../Pages/Authentication/VerificationPage/ThankYou'
 import Verification from '../Pages/Authentication/VerificationPage/Verification'
+import BlogHomePage from '../Pages/Blog/BlogHomePage/BlogHomePage'
+import CreatePost from '../Pages/Blog/CreateBlogPage/CreateBlogPage'
+import BlogPost from '../Pages/Blog/BlogPostPage/BlogPost'
 import ProtectedRoute from './ProtectedRoute'
 import FindProf from '../Pages/FindProfessionalPage/FindProf'
 import UserChat from '../Pages/Chat/UserChat/UserChat'
@@ -25,10 +28,11 @@ const Routes = () => {
             <Route path={"/question/:id"} exact component={QuestionPage}></Route> */}
 
             {/* <Route path={"/professional/:id"} exact component={Professional} />
-                <Route path={"/professional/:id/appointment"} exact component={Appointment} />
+                <Route path={"/professional/:id/appointment"} exact component={Appointment} /> */}
+                
                 <Route path={"/blogs"} exact component={BlogHomePage} />
                 <Route path={"/blogs/new"} exact component={CreatePost} />
-                <Route path={"/blogs/post/:id"} exact component={BlogPost} /> */}
+                <Route path={"/blogs/post/:id"} exact component={BlogPost} />
             <ProtectedRoute exact path={"/"} component={Home} />
             <Route path={"/chat"} exact component={UserChat}></Route>
             <Route path={"/chat/:id"} exact component={UserChat}></Route>
