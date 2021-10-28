@@ -17,7 +17,7 @@ const Appointment = (props) => {
   const [email, setEmail] = useState("")
   const [number, setNumber] = useState("")
   const [title, setTitle] = useState("")
-  const [time, setTime] = useState("")
+  const [timeState, setTime] = useState("")
   const [profName, setProfName] = useState("")
   const responseRef = useRef()
   const formRef = useRef();
@@ -48,7 +48,25 @@ const Appointment = (props) => {
 
   const paymentButton = useRef()
   const confirmButton = useRef()
+  useEffect(() => {
+    confirmButton.current.disabled = true
+    const dt = new Date();
+    dt.setMonth(dt.getMonth() + 2)
+    setMaxDate(dt)
 
+    axios.get(`/api/users/professionals/${props.match.params.id}`).then(res => {
+      setProfName(res.data.data.user.fullname)
+      responseRef.current = res.data.data.detailedAppointmentStat
+      let obj = responseRef.current.find(o => o._id === date.toDateString())
+      if (obj) {
+        setTimes(allTimes.filter(function (el) { return !obj.times.includes(el); }))
+      } else {
+        setTimes(allTimes)
+      }
+
+    })
+
+  }, [])
 
 
 
@@ -56,7 +74,6 @@ const Appointment = (props) => {
     if (responseRef.current) {
 
       let obj = responseRef.current.find(o => o._id === date.toDateString())
-      console.log(obj);
       if (obj) {
         setTimes(allTimes.filter(function (el) { return !obj.times.includes(el); }))
       } else {
@@ -77,7 +94,26 @@ const Appointment = (props) => {
   }
 
   const confirmAppointment = (event) => {
-    history.push("/home")
+    if (formRef.current.reportValidity()) {
+      event.preventDefault();
+      const body = {
+        _professionalId: props.match.params.id,
+        consumersName: name,
+        email,
+        number,
+        title,
+        time: timeState,
+        date: date.toDateString(),
+        professionalsName: profName
+      }
+      axios.post("/api/appointments", body)
+        .then(res => {
+          if (res.data.message === "successful") {
+            history.push("/home")
+          }
+        })
+    }
+
   }
 
 
@@ -91,7 +127,7 @@ const Appointment = (props) => {
           <form ref={formRef} className={styles.appointmentForm}>
             <div className={styles.appointmentForm}>
               <Typography className={styles.profName} gutterBottom variant="h5" component="div">
-                Set Appointment with <span style={{ color: "#86D382", fontWeight: "600" }}>Dr Mohit Kamal</span>
+                Set Appointment with <span style={{ color: "#86D382", fontWeight: "600" }}>{profName}</span>
               </Typography>
               <div className={styles.formFields1}>
                 <TextField required="true" onChange={(event) => { handleChange(event, "title") }} className={styles.textField} id="standard-basic" label="Appointment Title" variant="outlined" />
@@ -121,9 +157,12 @@ const Appointment = (props) => {
 
             <div className={styles.timeButtons}>
               <p className={styles.timeHeader}>Available Slots:</p>
-              {allTimes.map((time, index) => {
-                return <Button onClick={() => setTime(time)} variant="outlined" key={index}> {time} </Button>
+              {times.map((time, index) => {
+                return <Button onClick={() => setTime(time)} className={time === timeState ? styles.chosenTime : null} variant="outlined" key={index}> {time} </Button>
               })}
+              {
+                times.length <= 0 ? <div>Sorry, No Slots Available.</div> : null
+              }
             </div>
 
 

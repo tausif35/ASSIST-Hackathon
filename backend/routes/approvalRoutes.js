@@ -16,4 +16,9 @@ router
   .get(approvalController.pendingProfessionalApprovals);
 router.route("/professionals/:id").get(approvalController.approveAProfessional);
 
+//Blog approval routes
+router.route("/blogs").get(approvalController.pendingBlogApprovals);
+router.route("/blogs/:id").get(approvalController.approveABlog);
+
+
 module.exports = router;

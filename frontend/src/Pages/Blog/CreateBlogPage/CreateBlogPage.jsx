@@ -5,9 +5,9 @@ import { makeStyles } from '@mui/styles'
 import { useHistory, useLocation } from 'react-router-dom';
 import styles from './CreateBlog.module.css'
 import Topbar from '../../../Components/topbar/Topbar';
-import { height } from '@mui/system';
+import axios from '../../../Helper/axios'
 
-// import { createPost, uploadFile } from '../../service/api';
+
 
 const useStyle = makeStyles(() => ({
   container: {
@@ -15,7 +15,7 @@ const useStyle = makeStyles(() => ({
 
   },
   image: {
-    background: 'black',
+    background: '#EFF5E9',
     width: '100%',
     height: '60vh',
     objectFit: 'contain',
@@ -45,54 +45,57 @@ const CreatePost = () => {
   const classes = useStyle();
   const history = useHistory();
   const location = useLocation();
-
+  const [file, setFiles] = useState("")
+  const [title, setTitle] = useState("")
+  const [desc, setDesc] = useState("")
   const [post, setPost] = useState(initialPost);
-  const [file, setFile] = useState('');
-  const [imageURL, setImageURL] = useState('');
-  // const { account, setAccount } = useContext(LoginContext);
+  const [imageURL, setImageURL] = useState('http://localhost:8080/blogDefault.png');
 
-  const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
-  // useEffect(() => {
-  //   const getImage = async () => {
-  //     if (file) {
-  //       const data = new FormData();
-  //       data.append("name", file.name);
-  //       data.append("file", file);
+  const fileChangeHandler = (event) => {
+    const fil = event.target.files[0]
+    setFiles(fil)
+    var binaryData = [];
+    binaryData.push(fil);
+    setImageURL(window.URL.createObjectURL(new Blob(binaryData, { type: "application/zip" })))
+  }
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value)
+  }
 
-  //       const image = await uploadFile(data);
-  //       post.picture = image.data;
-  //       setImageURL(image.data);
-  //     }
-  //   }
-  //   getImage();
-  //   post.categories = location.search?.split('=')[1] || 'All'
-  //   post.username = account;
-  // }, [file])
 
-  // const savePost = async () => {
-  //   await createPost(post);
-  //   history.push('/');
-  // }
 
-  // const handleChange = (e) => {
-  //   setPost({ ...post, [e.target.name]: e.target.value });
-  // }
+
+
+  const handleDescChange = (e) => {
+    setDesc(e.target.value)
+  }
+
+  const savePost = () => {
+    const body = new FormData()
+    body.append("file", file)
+    console.log(body.get('file'))
+    body.append("title", title)
+    body.append("body", desc)
+    axios.post("/api/blogs", body)
+      .then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      })
+  }
 
   return (
     <div className={styles.mainDiv}>
-      <Topbar list={[{link:"groupChat",base:"Group Chat"}, {link:"questions", base:"Q&A"}, {link:"blogs",base:"Blogs"}, {link:"findProfessionals", base:"Find Professionals"}]} />
+      <Topbar list={[{ link: "groupChat", base: "Group Chat" }, { link: "questions", base: "Q&A" }, { link: "blogs", base: "Blogs" }, { link: "findProfessionals", base: "Find Professionals" }]} />
       <Box className={classes.container}>
-        <img src={url} alt="post" className={classes.image} />
+        <img src={imageURL} alt="post" className={classes.image} />
         <div className={styles.baseInfo}>
           <FormControl className={styles.title}>
 
-
-
             <InputBase
-              // onChange={(e) => handleChange(e)}
+              onChange={(e) => handleTitleChange(e)}
               name='title' placeholder="Title" className={styles.textfield} />
-
 
             <label htmlFor="fileInput">
               {/* <Add className={classes.addIcon} fontSize="large" color="action" /> */}
@@ -100,12 +103,11 @@ const CreatePost = () => {
             </label>
             <input
               type="file"
+              onChange={(event) => { fileChangeHandler(event) }}
               id="fileInput"
               style={{ display: "none" }}
             // onChange={(e) => setFile(e.target.files[0])}
             />
-
-
 
           </FormControl>
         </div>
@@ -115,21 +117,17 @@ const CreatePost = () => {
           placeholder="Tell your story..."
           className={classes.textarea}
           name='description'
-        // onChange={(e) => handleChange(e)}
+          onChange={(e) => handleDescChange(e)}
         />
 
       </Box>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', gap: '20px' }}>
         <Button
-          // onClick={() => savePost()} 
+          onClick={() => savePost()}
           variant="contained" style={{ background: '#86D382', padding: '10px 30px 10px 30px' }}>
           Publish</Button>
-        <Button
-          // onClick={() => savePost()} 
-          variant="contained" style={{ background: '#86D382', padding: '10px 30px 10px 30px' }} >
-          Anonymous</Button>
       </div>
-
+      <Button onclick={() => savePost()}> asfjh</Button>
     </div>
   )
 }
