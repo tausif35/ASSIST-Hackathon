@@ -3,6 +3,7 @@ const cors = require("cors");
 const userRouter = require("./routes/userRoutes");
 const approvalRouter = require("./routes/approvalRoutes");
 const appointmentRouter = require("./routes/appointmentRoutes");
+const qaRouter=require('./routes/qaRoutes')
 const AppError = require("./utils/AppError");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -25,7 +26,7 @@ app.use(
 app.use("/api/users", userRouter);
 app.use("/api/approvals", approvalRouter);
 app.use("/api/appointments", appointmentRouter);
-
+app.use("/api/qa", qaRouter);
 //Error Handling for all undefined routes
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
