@@ -1,0 +1,96 @@
+.mainDiv{
+  background-color: #f7f7f7;
+  height: fit-content;
+}
+
+
+.appointmentDiv{
+  display: flex;
+  justify-content: center;
+  text-align: center !important;
+}
+.profApproveCard{
+  margin: 50px;
+  padding: 20px !important;
+    width: 60% !important;
+    height: fit-content !important;
+  border-radius: 10px !important;
+    box-shadow: 1px 1px 1px #a2f39d;
+}
+
+.appointmentForm{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.profName{
+  margin-top: 10px;
+  font-family: "Oswald" !important;
+  color: #3a3939 !important;
+  font-weight: 400 !important;
+  font-size: 30px !important;
+}
+
+.textField{
+  margin: 20px !important;
+  width: 450px;
+  height: 20px;
+}
+
+.datePicker{
+  margin-top: 20px !important;
+}
+
+
+.timeButtons{
+  width: 90%;
+  margin: auto;
+}
+
+.timeButtons>*{
+  margin: 10px !important;
+}
+
+.MuiSvgIcon-root{
+  width: 0 !important;
+}
+.goAway{
+  visibility: hidden;
+}
+
+
+.appointmentBtn>*{
+  width: 170px;
+  height: 40px;
+  border: none;
+  color: white;
+  font-family: 'Poppins';
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+.makePayment{
+  background-color: #86D382;
+}
+
+.confirm{
+  background-color: #86D382;
+}
+
+.timeHeader{
+  text-align: left !important;
+  margin-left: 14px ;
+  font-family: 'Poppins';
+}
+.appointmentBtn>*:disabled,
+.appointmentBtn>*[disabled]{
+  background-color: #cccccc;
+}
+
+.appointmentBtn>*:hover:enabled{
+  cursor: pointer;
+  box-shadow: 3px 3px 3px #ccc;
+}
