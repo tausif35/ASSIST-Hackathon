@@ -3,7 +3,7 @@ const authmiddlewares = require("../middlewares/authMiddlewares");
 const authController = require("../controllers/authController");
 const consumerController = require("../controllers/consumerController");
 const professionalController = require("../controllers/professionalController");
-
+const chatController = require("../controllers/chatController");
 const router = express.Router();
 
 //Auth routes
@@ -22,5 +22,8 @@ router.route("/professionals").get(professionalController.getAllProfessionals);
 router
   .route("/professionals/appointments")
   .get(professionalController.getAProfessional);
+
+//Chat routes
+router.route("/chatInfo/:id").get(chatController.getChatInfo);
 
 module.exports = router;
