@@ -54,3 +54,43 @@ exports.approveAProfessional = catchAsync(async (req, res) => {
     message: "Approved",
   });
 });
+
+
+//See all pending approvals for blogs
+exports.pendingBlogApprovals = catchAsync(async (req, res) => {
+  const approvals = await ApproveBlog.find();
+  res.status(200).json({
+    message: "success",
+    data: {
+      approvals,
+    },
+  });
+});
+
+//Approve a Blog
+exports.approveABlog = catchAsync(async (req, res) => {
+  const approval = await ApproveBlog.findById(req.params.id);
+
+  if (!approval) {
+    return next(new AppError("No approval found with that ID", 404));
+  }
+
+  const { title, body, name, category, _userId, photo } = approval;
+
+  //Document creation in Professional collection
+  await BlogPost.create({
+    title,
+    body,
+    name,
+    category,
+    _userId,
+    photo,
+    approved: 1,
+  });
+
+  //Document Deletion in ApproveProfessional collection
+  await ApproveBlog.findByIdAndDelete(req.params.id);
+  res.status(200).json({
+    message: "Approved",
+  });
+});
