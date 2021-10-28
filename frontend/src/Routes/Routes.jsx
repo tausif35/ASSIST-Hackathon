@@ -9,6 +9,7 @@ import ProtectedRoute from './ProtectedRoute'
 import FindProf from '../Pages/FindProfessionalPage/FindProf'
 import UserChat from '../Pages/Chat/UserChat/UserChat'
 import Home from '../Pages/HomePage/Home'
+import VideoChat from '../Pages/videoChat/VideoChat'
 const Routes = () => {
     const [user, setUser] = useState(null);
 
@@ -31,6 +32,7 @@ const Routes = () => {
             <ProtectedRoute exact path={"/"} component={Home} />
             <Route path={"/chat"} exact component={UserChat}></Route>
             <Route path={"/chat/:id"} exact component={UserChat}></Route>
+            <Route path={"/videoCall/:id"} exact component={VideoChat} />
             <UserContext.Provider value={value}>
 
 
