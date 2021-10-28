@@ -8,6 +8,7 @@ import Verification from '../Pages/Authentication/VerificationPage/Verification'
 import ProtectedRoute from './ProtectedRoute'
 import FindProf from '../Pages/FindProfessionalPage/FindProf'
 import Home from '../Pages/HomePage/Home'
+import Appointment from '../Pages/Professional/AppointmentPage/Appointment'
 import Professional from '../Pages/Professional/ProfessionalPage/Professional'
 const Routes = () => {
   const [user, setUser] = useState(null);
@@ -24,7 +25,8 @@ const Routes = () => {
             <Route path={"/question/:id"} exact component={QuestionPage}></Route> */}
 
       <Route path={"/professional/:id"} exact component={Professional} />
-      {/* <Route path={"/professional/:id/appointment"} exact component={Appointment} />
+      <Route path={"/professional/:id/appointment"} exact component={Appointment} />
+      {/* 
                 <Route path={"/blogs"} exact component={BlogHomePage} />
                 <Route path={"/blogs/new"} exact component={CreatePost} />
                 <Route path={"/blogs/post/:id"} exact component={BlogPost} /> */}
