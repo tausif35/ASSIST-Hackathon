@@ -38,6 +38,7 @@ exports.signUser = catchAsync(async (req, res, next) => {
         Work_experience: work,
         Research_and_Publications: research,
         Achievements: achievment,
+        photo: "professionalDefault.png",
       });
     }
   } else {
@@ -46,6 +47,7 @@ exports.signUser = catchAsync(async (req, res, next) => {
         fullname,
         email,
         password: hash,
+        photo: "consumerDefault.png",
       });
     }
   }
