@@ -24,6 +24,7 @@ const professionalSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
     },
+    photo: String,
     Education_qualifications: String,
     Degrees: String,
     Specialization: [String],

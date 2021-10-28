@@ -8,6 +8,9 @@ const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
 app.use(express.json());
+app.use(express.static("img/consumers"));
+app.use(express.static("img/professionals"));
+app.use(express.static("img/blogs"));
 
 // Cross-Origin Resource Sharing middleware
 app.use(
