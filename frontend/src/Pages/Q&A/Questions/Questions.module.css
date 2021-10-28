@@ -1,0 +1,70 @@
+.searchInput{
+    width: 400px !important;
+    font-size: 18px !important;
+    border-radius: 10px !important;
+    border-color: transparent !important;
+  }
+
+.searchButton{
+    background-color: #86D382 !important;
+    color: white !important;
+    height: 100% !important;
+}
+
+.questionCard{
+    width: 90% !important;
+    margin: auto !important;
+    margin-top: 30px !important;
+    padding: 30px !important;
+    box-shadow: 0px 2px 2px rgba(134, 211, 130, 0.51) !important;
+}
+.answers{
+    float: right !important;
+}
+.question{
+    float: left !important;
+}
+
+.questionCard:hover{
+    cursor: pointer !important;
+    box-shadow: 0px 4px 4px rgba(134, 211, 130, 0.51) !important;
+}
+
+.questions:last-child{
+    margin-bottom: 30px !important;
+}
+
+.topDiv{
+    width: 93% !important;
+    margin: auto !important;
+    margin-top: 30px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-flow: row wrap !important;
+}
+
+.askQuestion{
+    margin-left: auto !important;
+}
+
+.searchButton:hover{
+    background-color: #86D382 !important;
+}
+
+.searchDiv{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-flow: row wrap !important;
+    gap: 20px !important;
+}
+
+.askQuestionButton{
+    background-color: #86D382 !important;
+    color: white !important;
+    font-size: 18px !important;
+    height: 100% !important;
+}
+
+.askQuestionButton:hover{
+    background-color: #86D382 !important;
+}
