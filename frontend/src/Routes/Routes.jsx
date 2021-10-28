@@ -21,15 +21,15 @@ const Routes = () => {
       <Route path={"/login"} exact component={Login} />
       <Route path={"/home"} exact component={Home} />
       <Route path={"/findProfessionals"} exact component={FindProf} />
-      {/* <Route path={"/questions"} exact component={Questions}></Route>
-            <Route path={"/question/:id"} exact component={QuestionPage}></Route> */}
+      <Route path={"/questions"} exact component={Questions}></Route>
+            <Route path={"/question/:id"} exact component={QuestionPage}></Route> 
 
       <Route path={"/professional/:id"} exact component={Professional} />
       <Route path={"/professional/:id/appointment"} exact component={Appointment} />
-      {/* 
+     
                 <Route path={"/blogs"} exact component={BlogHomePage} />
                 <Route path={"/blogs/new"} exact component={CreatePost} />
-                <Route path={"/blogs/post/:id"} exact component={BlogPost} /> */}
+                <Route path={"/blogs/post/:id"} exact component={BlogPost} /> 
       <ProtectedRoute exact path={"/"} component={Home} />
       <UserContext.Provider value={value}>
 
