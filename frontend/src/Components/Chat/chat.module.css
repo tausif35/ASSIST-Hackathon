@@ -1,122 +1,128 @@
-.chatUser{
-    width: 100%;
-    height: 100vh;
-    margin: auto;
-    vertical-align: middle;
-    position: relative;
-    margin-right: 4px;
+.chatUser {
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
-.chatSend{
-    width: 100%;
-    position: absolute;
-    bottom: 2%;
-    left: 2%;
-    right: 2%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 30px;
+.chatSend {
+  width: 100%;
+  position: absolute;
+  bottom: 1%;
+  left: 2%;
+  right: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
 }
-.sendButton{
-    width: 8%;
-    height: 8%;
-    background-color: transparent;
-    border: none;
-}
-
-.chatTopbar{
-    width: 100%;
-    height: 70px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0px 2px 0px #ccc ;
-    margin-bottom: 14px;
+.sendButton {
+  width: 8%;
+  height: 8%;
+  background-color: transparent;
+  border: none;
 }
 
-
-h1{
-    text-align: left;
-    font-size: 20px;
-    margin-left: 40px;
+.chatTopbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0px 2px 0px #ccc;
+  margin-bottom: 14px;
 }
 
-.sendButtonLogo{
-    width: 100%;
-    height: 100%;
+h1 {
+  font-family: "Poppins" !important;
+  text-align: left;
+  font-size: 20px;
+  margin-left: 40px;
 }
 
-
-.sendButton:hover{
-    cursor: pointer;
+.sendButtonLogo {
+  width: 100%;
+  height: 100%;
 }
 
-.sendInput:focus{
-    outline: none;
+.sendButton:hover {
+  cursor: pointer;
 }
 
-.userImage{
-    width: 10%;
-    height: 60%;
-    border-radius: 50%;
+.sendInput:focus {
+  outline: none;
 }
 
-.chatDiv{
-    width: 100%;
-    /* margin-bottom: 40px; */
+.userImage {
+  width: 10%;
+  height: 60%;
+  border-radius: 50%;
 }
 
-.chatDiv>*{
-    border-radius: 20px;
+.chatDiv {
+  width: 100%;
+  /* margin-bottom: 40px; */
 }
 
-.receiverText{
-    max-width: 60%;
-    float: left;
-    background-color: #86D382;
-    padding: 10px 15px 10px 15px;
-    margin: 5px;
+.chatDiv > * {
+  border-radius: 20px;
 }
 
-.senderText{
-    max-width: 60%;
-    float: right;
-    background-color: #f3f3f1;
-    padding: 10px 15px 10px 15px;
-    margin: 5px;
-    margin-right: 20px;
+.receiverText {
+  max-width: 60%;
+  float: left;
+  background-color: #86d382;
+  padding: 10px 15px 10px 15px;
+  margin: 5px;
 }
 
-.inbox{
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    height: 80%;
+.senderText {
+  max-width: 60%;
+  float: right;
+  background-color: #f3f3f1;
+  padding: 10px 15px 10px 15px;
+  margin: 5px;
+  margin-right: 20px;
 }
 
-.inbox::-webkit-scrollbar{
-    background-color: #f7f7f7;
-    width: 2px;
+.inbox {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 65%;
+}
+
+.inbox::-webkit-scrollbar {
+  background-color: #f7f7f7;
+  width: 2px;
 }
 .inbox::-webkit-scrollbar-thumb {
-    background-color: #86D382;    /* color of the scroll thumb */
-    border-radius: 1px;    
+  background-color: #86d382; /* color of the scroll thumb */
+  border-radius: 1px;
 }
 
-.sendInput{
-    width: 88%;
-    margin: 4%;
-    font-size: 22px;
-    border-radius: 20px;
+.sendInput {
+  width: 88%;
+  margin: 4%;
+  font-size: 22px;
+  border-radius: 20px;
 }
 
-.errorDiv{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 40%;
+.errorDiv {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 40%;
+}
+
+.timeShow {
+  background-color: #ccc;
+  padding: 4px;
 }
