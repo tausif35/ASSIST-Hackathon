@@ -5,7 +5,8 @@ const approvalRouter = require("./routes/approvalRoutes");
 const appointmentRouter = require("./routes/appointmentRoutes");
 const blogRouter = require("./routes/blogRoutes");
 const commentRouter = require("./routes/commentRoutes");
-const qaRouter=require('./routes/qaRoutes')
+const qaRouter = require("./routes/qaRoutes");
+const adminRouter = require("./routes/adminRoutes");
 const AppError = require("./utils/AppError");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -15,7 +16,6 @@ app.use(express.static("img/consumers"));
 app.use(express.static("img/blogs"));
 app.use(express.static("img/professionals"));
 app.use(express.static("img/blogs"));
-
 
 // Cross-Origin Resource Sharing middleware
 app.use(
@@ -33,6 +33,8 @@ app.use("/api/appointments", appointmentRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/qa", qaRouter);
+app.use("/api/admin", adminRouter);
+
 //Error Handling for all undefined routes
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
