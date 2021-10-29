@@ -1,0 +1,29 @@
+.image{
+width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    height: 150;
+}
+.heading{
+font-size: 18;
+font-weight: 600;
+}
+.textColor{
+  color: #878787;
+  font-size: 12;
+
+}
+.detail{
+  word-break: break-word;
+  font-size: 14;
+}
+
+.container{
+  border: 1px solid #d3cede;
+  border-radius: 10;
+  margin: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 350px;
+}

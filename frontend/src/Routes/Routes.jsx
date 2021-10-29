@@ -22,6 +22,7 @@ import AdminPanel from "../Pages/Admin/AdminPanel";
 import Profile from "../Pages/Profile/Profile";
 import AdminLogin from "../Pages/Admin/AdminLogin/AdminLogin";
 import GroupChatHome from "../Pages/GroupChat/GroupChatHome/GroupChatHome";
+import CreatePrescription from "../Pages/Prescription/CreatePrescription/CreatePrescription";
 const Routes = () => {
   const [user, setUser] = useState(null);
 
@@ -52,6 +53,7 @@ const Routes = () => {
       <Route path={"/admin"} exact component={AdminPanel} />
       <Route path={"/profile"} exact component={Profile} />
 
+      <ProtectedRoute exact path={"/prescription/:id"} component={CreatePrescription} />
       <ProtectedRoute exact path={"/"} component={Home} />
       <UserContext.Provider value={value}>
         <Route path={"/signUp"} exact component={SignUp} />

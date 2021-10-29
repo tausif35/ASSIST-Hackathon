@@ -35,8 +35,10 @@ const AdminLogin = () => {
         role: 'admin',
         password
       }
+      console.log(body)
       axios.post("/api/admin/login", body)
         .then(res => {
+          console.log(res)
           cookies.set("assistc", res.data.accessToken)
           cookies.set("assistr", body.role)
           history.push("/admin");

@@ -11,7 +11,7 @@ router.route("/signup").post(adminController.createAnAdmin);
 router.use(authmiddlewares.protectRoute);
 
 //All routes after this middleware are restriced to admin only
-router.use(authmiddlewares.restrict);
+// router.use(authmiddlewares.restrict);
 
 router.route("/").get(adminController.getAllAdmins);
 

@@ -13,6 +13,6 @@ router
   .get(appointmentController.getAllAppointments)
   .post(appointmentController.createAnAppointment);
 
-router.route("/:id").delete(appointmentController.cancelAnAppointmnet);
+router.route("/:id").patch(appointmentController.writePrescription).delete(appointmentController.cancelAnAppointmnet);
 
 module.exports = router;

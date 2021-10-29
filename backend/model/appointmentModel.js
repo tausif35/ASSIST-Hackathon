@@ -20,6 +20,14 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
   },
   time: String,
+  diagnosis: {
+    type: String,
+    default: ""
+  },
+  prescription: {
+    type: String,
+    default: ""
+  },
 });
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);

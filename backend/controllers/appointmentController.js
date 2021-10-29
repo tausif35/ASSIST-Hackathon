@@ -34,3 +34,24 @@ exports.cancelAnAppointmnet = catchAsync(async (req, res, next) => {
     message: "successfully canceled",
   });
 });
+
+exports.writePrescription = catchAsync(async (req, res, next) => {
+  if (req.user.role === "consumer") {
+    return next(new AppError("unauthorizeed", 400));
+  }
+  const { diagnosis, prescription } = req.body
+
+  const newPrescription = await Appointment.findByIdAndUpdate(req.params.id, {
+    diagnosis,
+    prescription
+  })
+
+
+
+  res.status(200).json({
+    message: "successfully updated",
+    data: {
+      newPrescription
+    }
+  });
+});
