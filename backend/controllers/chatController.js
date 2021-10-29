@@ -17,6 +17,13 @@ exports.getChatInfo = async (req, res) => {
       senderInfo = await Professional.findById(id);
       receiverInfo = receiverId ? await Consumer.findById(receiverId) : null;
     }
+    if(!receiverInfo){
+      if (role === "consumer") {
+        receiverInfo=await Consumer.findById(id);
+      }else{
+        receiverInfo=await Professional.findById(id)
+      }
+    }
   } catch (err) {
     error = true;
   }
@@ -34,3 +41,10 @@ exports.getChatInfo = async (req, res) => {
     receiverInfo,
   });
 };
+
+
+exports.getSingleUser=(req,res)=>{
+  res.send({
+    user:req.user
+  })
+}

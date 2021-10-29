@@ -102,7 +102,7 @@ const Professional = (props) => {
         {
           !same?<div className={styles.btn}>
           <Button onClick={chatButtonClicked} className={styles.chatDoc}>Chat with doctor</Button>
-          <Button onClick={setAppointmentButtonClicked} className={styles.setApp}>Set Appointment</Button>
+          {cookies.get("assistr")==="consumer"? <Button onClick={setAppointmentButtonClicked} className={styles.setApp}>Set Appointment</Button>:null}
         </div>:null 
         }
       </Grid>

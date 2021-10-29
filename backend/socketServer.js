@@ -9,7 +9,29 @@ var users = {};
 
 var messages = {};
 
+var groupChat={}
+
 io.on("connection", (socket) => {
+  socket.on("join-groupChat", (room, cb) => {
+    // socket.emit("joined room", messages)
+    socket.join(room);
+    if (groupChat[room]) {
+      cb({ messages: groupChat[room], ...users });
+    } else {
+      cb({ messages: [], ...users });
+    }
+  });
+  socket.on("sendGroup", (sentMessage) => {
+    console.log(sentMessage);
+    const room = sentMessage.room;
+    if (groupChat[room]) {
+      groupChat[room].push(sentMessage);
+    } else {
+      groupChat[room] = [sentMessage];
+    }
+
+    io.sockets.in(room).emit("recieveGroup", sentMessage);
+  });
   socket.on("join-room", (room, cb) => {
     // socket.emit("joined room", messages)
     socket.join(room);
@@ -70,12 +92,6 @@ io.on("connection", (socket) => {
     } else {
       messages[room] = [sentMessage];
     }
-
-    // if(users[sentMessage.receiverId]){
-    //   users[sentMessage.receiverId][sentMessage.senderId]=sentMessage
-    // }else{
-
-    // }
 
     const obj = {
       sentMessage,
