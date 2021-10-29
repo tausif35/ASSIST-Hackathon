@@ -13,4 +13,6 @@ router
   .get(appointmentController.getAllAppointments)
   .post(appointmentController.createAnAppointment);
 
+router.route("/:id").delete(appointmentController.cancelAnAppointmnet);
+
 module.exports = router;
