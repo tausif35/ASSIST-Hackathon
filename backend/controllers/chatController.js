@@ -41,3 +41,10 @@ exports.getChatInfo = async (req, res) => {
     receiverInfo,
   });
 };
+
+
+exports.getSingleUser=(req,res)=>{
+  res.send({
+    user:req.user
+  })
+}

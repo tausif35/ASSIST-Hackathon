@@ -19,6 +19,8 @@ router.patch(
   professionalController.updateMe
 );
 
+router.get("/userInfo",chatController.getSingleUser)
+
 router.patch(
   "/updateMe/consumer",
   consumerController.uploadUserPhoto,
