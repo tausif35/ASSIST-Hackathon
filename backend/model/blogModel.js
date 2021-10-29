@@ -19,7 +19,7 @@ const blogSchema = new mongoose.Schema(
     category: {
       type: [String],
     },
-
+    role: String,
     _userId: {
       type: mongoose.Schema.ObjectId,
       ref: "Consumer",

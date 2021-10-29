@@ -16,8 +16,9 @@ const approveBlogSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: "blogDefault.png"
+    default: "blogDefault.png",
   },
+  role: String,
 
   category: {
     type: [String],

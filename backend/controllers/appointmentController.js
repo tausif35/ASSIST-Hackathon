@@ -14,7 +14,7 @@ exports.getAllAppointments = catchAsync(async (req, res, next) => {
 });
 
 //Create a new appointment
-exports.createAnAppointment = catchAsync(async (req, res) => {
+exports.createAnAppointment = catchAsync(async (req, res, next) => {
   const newAppointment = await Appointment.create({
     ...req.body,
     _consumerId: req.user.id,
@@ -28,7 +28,7 @@ exports.createAnAppointment = catchAsync(async (req, res) => {
 });
 
 //Cancel an appointment
-exports.cancelAnAppointmnet = catchAsync(async (req, res) => {
+exports.cancelAnAppointmnet = catchAsync(async (req, res, next) => {
   await Appointment.findByIdAndDelete(req.params.id);
   res.status(200).json({
     message: "successfully canceled",

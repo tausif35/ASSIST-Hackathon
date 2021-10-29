@@ -1,7 +1,7 @@
 const ApproveProfessional = require("../model/approveProfessionalModel");
-const ApproveBlog = require("../model/approveBlogModel")
+const ApproveBlog = require("../model/approveBlogModel");
 const Professional = require("../model/professionalModel");
-const BlogPost = require("../model/blogModel")
+const BlogPost = require("../model/blogModel");
 const catchAsync = require("../utils/catchAsync");
 
 //See all pending approvals for professionals
@@ -57,7 +57,6 @@ exports.approveAProfessional = catchAsync(async (req, res) => {
   });
 });
 
-
 //See all pending approvals for blogs
 exports.pendingBlogApprovals = catchAsync(async (req, res) => {
   const approvals = await ApproveBlog.find();
@@ -77,7 +76,7 @@ exports.approveABlog = catchAsync(async (req, res) => {
     return next(new AppError("No approval found with that ID", 404));
   }
 
-  const { title, body, name, category, _userId, photo } = approval;
+  const { title, body, name, category, _userId, photo, role } = approval;
 
   //Document creation in Professional collection
   await BlogPost.create({
@@ -87,6 +86,7 @@ exports.approveABlog = catchAsync(async (req, res) => {
     category,
     _userId,
     photo,
+    role,
     approved: 1,
   });
 
