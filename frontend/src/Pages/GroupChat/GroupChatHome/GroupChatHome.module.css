@@ -1,0 +1,46 @@
+
+.featureCard{
+  height: 320px !important;
+  width: 15% !important;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 1px #a2f39d;
+  /* border: 2px solid #86D382; */
+}
+
+.featureCard:hover{
+  cursor: pointer;
+  box-shadow: 3px 3px 3px #86D382;
+}
+
+.features{
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.featureLogo{
+  width: 50% !important;
+}
+.featureName{
+  margin-top: 10px;
+  font-family: "Oswald" !important;
+  color: #86D382 !important;
+  font-weight: 600 !important;
+  font-size: 30px !important;
+}
+
+.featureDesc{
+  margin-top: 10px;
+  text-align: center !important;
+  font-family: "Poppins" !important;
+  font-size: 14px !important;
+
+}

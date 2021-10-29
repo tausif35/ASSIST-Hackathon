@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef,useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import Topbar from '../../../Components/topbar/Topbar'
-import {issues} from '../../../Helper/mentalHealthProblems'
+import { issues } from '../../../Helper/mentalHealthProblems'
 import {
   Button, TextField, FormControlLabel, FormLabel, Box, Checkbox, Card, CardHeader, Divider, List, ListItem,
   ListItemIcon, ListItemText, Grid
@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom"
 import axios from '../../../Helper/axios';
 import Cookies from 'universal-cookie';
 import { UserContext } from '../../../Helper/userContext';
-const cookies=new Cookies()
+const cookies = new Cookies()
 
 function not(a, b) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -26,13 +26,13 @@ function union(a, b) {
 }
 
 const Verification = () => {
-  const {user,setUser}=useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
   const [degrees, setdegrees] = useState("")
   const [edu, setedu] = useState("")
   const [work, setwork] = useState("")
   const [research, setresearch] = useState("")
   const [achievment, setAchievment] = useState("")
-  const [phone,setPhone]=useState("")
+  const [phone, setPhone] = useState("")
 
   let history = useHistory();
   const formRef = React.useRef();
@@ -115,16 +115,16 @@ const Verification = () => {
       research,
       achievment,
       phone,
-      specialization:right
+      specialization: right
     }
-    if(formRef.current.reportValidity()){
-      axios.post("/api/users/signup",body)
-      .then(res=>{
-        console.log(res);
-        history.push("/thankYou")
-      }).catch(err=>{
-        console.log(err);
-      })
+    if (formRef.current.reportValidity()) {
+      axios.post("/api/users/signup", body)
+        .then(res => {
+          console.log(res);
+          history.push("/signUp/ThankYou")
+        }).catch(err => {
+          console.log(err);
+        })
 
     }
   };
@@ -134,7 +134,7 @@ const Verification = () => {
   }, []);
 
 
-  window.onload = function() {
+  window.onload = function () {
     history.push("signUp")
   };
 

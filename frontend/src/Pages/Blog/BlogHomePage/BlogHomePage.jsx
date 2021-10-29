@@ -37,6 +37,7 @@ const BlogHomePage = () => {
   const searchInputHandler = (event) => {
     setSearchValue(event.target.value)
   }
+
   const writeBlogHandler = () => {
     history.push('/blogs/new')
   }

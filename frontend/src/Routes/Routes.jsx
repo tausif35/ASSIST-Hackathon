@@ -17,10 +17,11 @@ import Appointment from "../Pages/Professional/AppointmentPage/Appointment";
 import Professional from "../Pages/Professional/ProfessionalPage/Professional";
 import QuestionPage from "../Pages/Q&A/QuestionPage/QuestionPage";
 import Questions from "../Pages/Q&A/Questions/Questions";
-import GroupChatHome from "../Pages/GroupChat/GroupChatHome";
 import GroupChatRoom from "../Pages/GroupChat/GroupChatRoom";
 import AdminPanel from "../Pages/Admin/AdminPanel";
 import Profile from "../Pages/Profile/Profile";
+import AdminLogin from "../Pages/Admin/AdminLogin/AdminLogin";
+import GroupChatHome from "../Pages/GroupChat/GroupChatHome/GroupChatHome";
 const Routes = () => {
   const [user, setUser] = useState(null);
 
@@ -28,6 +29,8 @@ const Routes = () => {
   return (
     <Switch>
       <Route path={"/login"} exact component={Login} />
+      <Route path={"/adminlogin"} exact component={AdminLogin} />
+
       <Route path={"/home"} exact component={Home} />
       <Route path={"/findProfessionals"} exact component={FindProf} />
       <Route path={"/questions"} exact component={Questions}></Route>
