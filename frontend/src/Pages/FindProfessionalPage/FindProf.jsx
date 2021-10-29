@@ -14,11 +14,31 @@ const FindProf = () => {
   const [name, setName] = useState("")
 
 
-  
+  useEffect(() => {
+    axios.get("/api/users/professionals")
+      .then(response => {
+        console.log(response);
+        setDoctors(response.data.data.professionals)
+      }).catch(err => {
+        console.log(err);
+      })
+
+  }, [])
 
   useEffect(() => {
     setDoctorShow(doctors.filter(doc => doc.Specialization.includes(doctorType)))
   }, [doctors, doctorType])
+
+  useEffect(()=>{
+    const doctorName = name.toLowerCase()
+    if (doctorName.trim() == "") {
+      setDoctorShow(doctors.filter(doc => doc.Specialization.includes(doctorType)))
+    }
+    if (doctorName.trim() !== "") {
+      setDoctorShow(doctors.filter(doc => doc.fullname.toLowerCase() === doctorName || doc.fullname.toLowerCase().includes(doctorName)))
+    }
+  },[name])
+
 
 
 
@@ -33,17 +53,11 @@ const FindProf = () => {
 
 
   const cardClicked = (id) => {
-    console.log(id);
     history.push("/professional/" + id)
   }
 
 
-  const searchButtonClicked = () => {
-    const doctorName = name.toLowerCase()
-    if (doctorName.trim() !== "") {
-      setDoctorShow(doctors.filter(doc => doc.fullname.toLowerCase() === doctorName || doc.fullname.toLowerCase().includes(doctorName)))
-    }
-  }
+  
 
   return (
     <div className={styles.mainUserHomeDiv}>
@@ -60,7 +74,6 @@ const FindProf = () => {
         </div>
 
         <p className={styles.doctorText}>Search By Name:</p> <input onChange={handleInputChange} className={styles.profNameSearch} />
-        <button onClick={searchButtonClicked} className={styles.searchButton}>Search</button>
       </div>
       <Grid
         container
@@ -68,49 +81,31 @@ const FindProf = () => {
         justifyContent="flex-start"
         className={styles.gridContainer}
       >
-        <Grid item xs={12} sm={6} md={4}>
-          <Card onClick={() => cardClicked(1)} variant="outlined" className={styles.profApproveCard}>
+        {doctorShow.map((doc, docIndex) => {
+          return (
+            <Grid item xs={12} sm={6} md={4}>
+              <Card onClick={() => cardClicked(doc._id)} variant="outlined" className={styles.profApproveCard} key={docIndex}>
 
-            <CardMedia className={styles.profImg}
-              component="img"
+                <CardMedia className={styles.profImg}
+                  component="img"
 
-              image={findProsImg}
-              alt="Find Professionals"
-            />
-            <div className={styles.profLabels}>
-              <Typography className={styles.profName} gutterBottom variant="h5" component="div">
-                Dr Mohit Kamal
-              </Typography>
-              <Typography className={styles.profSpec1} variant="body2" color="text.secondary">
-                MBBS MD </Typography>
-              <Typography className={styles.profSpec2} variant="body2" color="text.secondary">
-                Major Depression ,Bipolar Disorder ,Generalized Anxiety Disorder,Obsessive-Compulsive Disorder, Panic Disorder
-              </Typography>
-            </div>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card onClick={() => cardClicked()} variant="outlined" className={styles.profApproveCard}>
-
-            <CardMedia className={styles.profImg}
-              component="img"
-
-              image={findProsImg}
-              alt="Find Professionals"
-            />
-            <div className={styles.profLabels}>
-              <Typography className={styles.profName} gutterBottom variant="h5" component="div">
-                Dr Tahsin Tunan
-              </Typography>
-              <Typography className={styles.profSpec1} variant="body2" color="text.secondary">
-                MBBS MD </Typography>
-              <Typography className={styles.profSpec2} variant="body2" color="text.secondary">
-                Major Depression ,Bipolar Disorder ,Social Anxiety, Panic Disorder
-              </Typography>
-            </div>
-          </Card>
-        </Grid>
-
+                  image={findProsImg}
+                  alt="Find Professionals"
+                />
+                <div className={styles.profLabels}>
+                  <Typography className={styles.profName} gutterBottom variant="h5" component="div">
+                    {doc.fullname}
+                  </Typography>
+                  <Typography className={styles.profSpec1} variant="body2" color="text.secondary">
+                    {doc.Degrees}</Typography>
+                  <Typography className={styles.profSpec2} variant="body2" color="text.secondary">
+                    {doc.Specialization.map((special,index)=> <span key={index}>{special}<br/></span>)}
+                  </Typography>
+                </div>
+              </Card>
+            </Grid>
+          )
+        })}
       </Grid>
     </div>
   )
