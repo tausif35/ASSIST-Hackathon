@@ -23,8 +23,9 @@ const Home = () => {
     
     axios.get(`/api/users/${role}s/appointments`)
       .then(res => {
-        const apiResponse=res.data.data.user
+        const apiResponse=res.data.data[role]
         responseRef.current = apiResponse.appointments;
+        console.log(responseRef);
         setRender(true)
       }).catch(err=>{
         console.log(err);
@@ -34,7 +35,6 @@ const Home = () => {
 
   const joinButtonHandler=(id)=>{
     let link="/videoCall/"+id
-    // history.push(link)
     window.open(link, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
   }
 
@@ -134,7 +134,6 @@ const Home = () => {
       </div>
       <h3 className={styles.appointHeader}>Your Appointments</h3>
       <div className={styles.appointments}>
-        <h3>Your Appointments</h3>
         {
           responseRef.current ?
             responseRef.current.slice(0).reverse().map((appointment,index) => {

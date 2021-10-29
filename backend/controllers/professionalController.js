@@ -17,7 +17,13 @@ exports.getAllProfessionals = catchAsync(async (req, res) => {
 
 //Find A single Professional
 exports.getAProfessional = catchAsync(async (req, res) => {
-  const professional = await Professional.findById(req.user.id).populate({
+  let same=false;
+  let id=req.params.id?req.params.id :req.user.id
+  if(req.params.id && req.params.id===req.user.id){
+    same=true;
+  }
+  console.log(id);
+  const professional = await Professional.findById(id).populate({
     path: "appointments",
     select: "_consumerId date time consumersName -_professionalId",
   });
@@ -40,6 +46,7 @@ exports.getAProfessional = catchAsync(async (req, res) => {
     data: {
       professional,
       detailedAppointmentStat,
+      same
     },
   });
 });

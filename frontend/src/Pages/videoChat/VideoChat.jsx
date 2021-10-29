@@ -23,6 +23,71 @@ function VideoChat(props) {
   const connectionRef = useRef()
 
   const myPeer = new Peer()
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({
+      video: video,
+      audio: mute,
+    }).then(stream => {
+      myVideo.current.srcObject = stream // Display our video to ourselves
+      stream.getAudioTracks()[0].enabled = mute;
+      myPeer.on('call', call => { // When we join someone's room we will receive a call from them
+        call.answer(stream) // Stream them our video/audio
+        call.on('stream', userVideoStream => { // When we recieve their stream
+          addVideoStream(userVideoStream) // Display their video to ourselves
+        })
+      })
+
+      socket.on('user-connected', userId => { // If a new user connect
+        connectToNewUser(userId, stream)
+      })
+    })
+
+    myPeer.on('open', id => { // When we first open the app, have us join a room
+      socket.emit('join-vid-room', roomId, id)
+    })
+    
+  }, [])
+
+  function connectToNewUser(userId, stream) { // This runs when someone joins our room
+    const call = myPeer.call(userId, stream) // Call the user who just joined
+    // Add their video
+    call.on('stream', userVideoStream => {
+      setUserConnected(true)
+      userVideo.current.srcObject = userVideoStream
+    })
+    call.on('close', () => {
+      userVideo.current.removeChild(userVideo.current.children[0])
+  })
+  }
+  
+  function addVideoStream(stream) {
+    userVideo.current.srcObject = stream
+    
+  }
+
+  useEffect(()=>{
+    socket.emit(mute)
+    navigator.mediaDevices.getUserMedia({
+      video: video,
+      audio: mute,
+    }).then(stream => {
+      myVideo.current.srcObject = stream // Display our video to ourselves
+      myPeer.on('call', call => { // When we join someone's room we will receive a call from them
+        call.answer(stream) // Stream them our video/audio
+        call.on('stream', userVideoStream => { // When we recieve their stream
+          addVideoStream(userVideoStream) // Display their video to ourselves
+        })
+      })
+
+      socket.on('user-connected', userId => { // If a new user connect
+        connectToNewUser(userId, stream)
+      })
+    })
+
+    myPeer.on('open', id => { // When we first open the app, have us join a room
+      socket.emit('join-vid-room', roomId, id)
+    })
+  },[mute,video])
 
   
 
@@ -30,8 +95,8 @@ function VideoChat(props) {
     <>
       <Topbar list={[]}/>
       <div className={styles.videoChatDiv}>
-        <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/907/805/1a6.jpg" className={styles.userVideo} muted ref={userVideo} autoPlay />
-        <img src="https://i.imgur.com/6NIguJG.png" className={styles.MyVideo} muted ref={myVideo} autoPlay />
+        <video className={styles.userVideo} muted ref={userVideo} autoPlay />
+        <video className={styles.userVideo} muted ref={myVideo} autoPlay />
       </div>
 
       <div className={styles.vidChatButtons}>

@@ -34,6 +34,7 @@ router.route("/professionals").get(professionalController.getAllProfessionals);
 router
   .route("/professionals/appointments")
   .get(professionalController.getAProfessional);
+  router.route("/professionals/:id").get(professionalController.getAProfessional);
 
 //Chat routes
 router.route("/chatInfo/:id").get(chatController.getChatInfo);
