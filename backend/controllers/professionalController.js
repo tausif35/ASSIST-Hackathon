@@ -18,8 +18,8 @@ exports.getAllProfessionals = catchAsync(async (req, res) => {
 //Find A single Professional
 exports.getAProfessional = catchAsync(async (req, res) => {
   let same=false;
-  let id=req.params?req.params.id :req.user.id
-  if(req.params && req.params.id===req.user.id){
+  let id=req.params.id?req.params.id :req.user.id
+  if(req.params.id && req.params.id===req.user.id){
     same=true;
   }
   console.log(id);
