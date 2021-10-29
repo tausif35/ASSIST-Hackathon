@@ -1,4 +1,4 @@
-import { Card, Typography, CardMedia, Button } from '@mui/material'
+import { Card, Typography, CardMedia, Button, IconButton } from '@mui/material'
 import React, { useEffect, useState, useRef } from 'react'
 import Cookies from 'universal-cookie';
 
@@ -10,32 +10,46 @@ import blogImg from "./blog.png"
 import gcImg from "./gchat.png"
 import axios from '../../Helper/axios'
 import { useHistory } from 'react-router';
+import ChatIcon from '@mui/icons-material/Chat';
 
 
 const Home = () => {
   const cookies = new Cookies();
-  const role=cookies.get("assistr")
+  const role = cookies.get("assistr")
   let history = useHistory()
   const responseRef = useRef()
   const [render, setRender] = useState(false)
   const userType = cookies.get("assistr");
   useEffect(() => {
-    
+
     axios.get(`/api/users/${role}s/appointments`)
       .then(res => {
-        const apiResponse=res.data.data[role]
+        const apiResponse = res.data.data[role]
         responseRef.current = apiResponse.appointments;
         console.log(responseRef);
         setRender(true)
-      }).catch(err=>{
+      }).catch(err => {
         console.log(err);
       })
     document.title = "Home - Assist";
   }, []);
 
-  const joinButtonHandler=(id)=>{
-    let link="/videoCall/"+id
+  const joinButtonHandler = (id) => {
+    let link = "/videoCall/" + id
     window.open(link, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  }
+
+  const cancelAppointmentHandler = (id) => {
+    let link = "/api/appointments/" + id;
+    axios.delete(link).then(res => {
+      console.log(res);
+      window.location.reload(false)
+    })
+  }
+
+
+  const chatHomeHandler = () => {
+    history.push('/chat')
   }
 
 
@@ -85,7 +99,7 @@ const Home = () => {
             Seek out the most suitable Mental Health Expert for You and schedule an appointment.
           </Typography>
         </Card>
-        <Card variant="outlined" className={styles.featureCard} onClick={() => history.push("/q&a")}>
+        <Card variant="outlined" className={styles.featureCard} onClick={() => history.push("/questions")}>
 
           <CardMedia className={styles.featureLogo}
             component="img"
@@ -115,7 +129,7 @@ const Home = () => {
             Read insights and advice from Professionals and share experiences from everyone around us.
           </Typography>
         </Card>
-        <Card variant="outlined" className={styles.featureCard} onClick={() => history.push("/groupChat")}>
+        <Card variant="outlined" className={styles.featureCard} onClick={() => history.push("/groupchat")}>
 
           <CardMedia className={styles.featureLogo}
             component="img"
@@ -136,27 +150,30 @@ const Home = () => {
       <div className={styles.appointments}>
         {
           responseRef.current ?
-            responseRef.current.slice(0).reverse().map((appointment,index) => {
+            responseRef.current.slice(0).reverse().map((appointment, index) => {
               return (
                 <Card key={index} variant="outlined" className={styles.appointmentCard}>
                   <Typography className={styles.appointmentWith} variant="body3" color="text.secondary">
-                    With : {role==="consumer"? appointment.professionalsName : appointment.consumersName}
+                    With : {role === "consumer" ? appointment.professionalsName : appointment.consumersName}
                   </Typography>
                   <Typography className={styles.appointmentTime} variant="body3" color="text.secondary">
                     Date & Time: {appointment.date} - {appointment.time}
                   </Typography>
                   <div className={styles.btnDiv}>
-                    <Button 
-                    onClick={()=>joinButtonHandler(appointment._id)} 
-                    className={styles.joinBtn} variant="outlined" >Join Session</Button>
-                    <Button className={styles.cancelBtn} variant="outlined" >Cancel</Button>
+                    <Button
+                      onClick={() => joinButtonHandler(appointment._id)}
+                      className={styles.joinBtn} variant="outlined" >Join Session</Button>
+                    <Button onClick={() => cancelAppointmentHandler(appointment._id)}
+                      className={styles.cancelBtn} variant="outlined" >Cancel</Button>
                   </div>
                 </Card>
               )
             }) : null
         }
       </div>
-
+      <IconButton onClick={chatHomeHandler} className={styles.chatHomeButton} type="submit" sx={{ p: '10px' }} aria-label="Chat">
+        <ChatIcon className={styles.chatButton} />
+      </IconButton>
     </div>
   )
 }

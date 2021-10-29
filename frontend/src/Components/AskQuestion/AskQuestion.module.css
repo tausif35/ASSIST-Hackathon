@@ -1,7 +1,7 @@
 .askQuestionDiv{
     width: 80%;
     height: 70%;
-    background-color: #EFF5E9;
+    background-color: #EFF5E9 !important;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -14,6 +14,7 @@
 .textField{
     width: 90%;
     padding: 20px;
+    background-color: white;
     /* height: 100px !important; */
 }
 
