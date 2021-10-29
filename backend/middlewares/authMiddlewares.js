@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const Consumer = require("../model/consumerModel");
+const Admin = require("../model/adminModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 
@@ -21,7 +22,7 @@ exports.protectRoute = (req, res, next) => {
 
 //Middleware for Authorizing admin-only routes
 exports.restrict = async (req, res, next) => {
-  const user = await Consumer.findById(req.user.id);
+  const user = await Admin.findById(req.user.id);
   try {
     if (user.role != "admin") {
       return res.json({
