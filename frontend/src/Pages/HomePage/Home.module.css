@@ -166,3 +166,16 @@
   font-family: "Poppins" !important;
   font-size: 14px !important;
 }
+
+.chatHomeButton{
+  margin-right: 20px !important;
+  height: 80px;
+  width: 80px;
+    position: fixed !important;
+    bottom: 0px !important;
+    right: 0px !important; 
+}
+.chatButton{
+  font-size: 70px !important;
+  color: #86D382;
+}

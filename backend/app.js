@@ -5,7 +5,7 @@ const approvalRouter = require("./routes/approvalRoutes");
 const appointmentRouter = require("./routes/appointmentRoutes");
 const blogRouter = require("./routes/blogRoutes");
 const commentRouter = require("./routes/commentRoutes");
-const qaRouter=require('./routes/qaRoutes')
+const qaRouter = require('./routes/qaRoutes')
 const AppError = require("./utils/AppError");
 const globalErrorHandler = require("./controllers/errorController");
 
@@ -21,7 +21,7 @@ app.use(express.static("img/blogs"));
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PATCH"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
 );
