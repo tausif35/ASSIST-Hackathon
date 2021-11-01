@@ -20,6 +20,13 @@ const Home = () => {
   const responseRef = useRef()
   const [render, setRender] = useState(false)
   const userType = cookies.get("assistr");
+  window.onload = function () {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }
+
   useEffect(() => {
 
     axios.get(`/api/users/${role}s/appointments`)

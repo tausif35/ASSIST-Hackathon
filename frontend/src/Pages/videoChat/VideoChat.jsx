@@ -45,7 +45,7 @@ function VideoChat(props) {
     myPeer.on('open', id => { // When we first open the app, have us join a room
       socket.emit('join-vid-room', roomId, id)
     })
-    
+
   }, [])
 
   function connectToNewUser(userId, stream) { // This runs when someone joins our room
@@ -57,15 +57,15 @@ function VideoChat(props) {
     })
     call.on('close', () => {
       userVideo.current.removeChild(userVideo.current.children[0])
-  })
-  }
-  
-  function addVideoStream(stream) {
-    userVideo.current.srcObject = stream
-    
+    })
   }
 
-  useEffect(()=>{
+  function addVideoStream(stream) {
+    userVideo.current.srcObject = stream
+
+  }
+
+  useEffect(() => {
     socket.emit(mute)
     navigator.mediaDevices.getUserMedia({
       video: video,
@@ -87,38 +87,18 @@ function VideoChat(props) {
     myPeer.on('open', id => { // When we first open the app, have us join a room
       socket.emit('join-vid-room', roomId, id)
     })
-  },[mute,video])
+  }, [mute, video])
 
-  
+
 
   return (
     <>
-      <Topbar list={[]}/>
+      <Topbar list={[]} />
       <div className={styles.videoChatDiv}>
-        <video className={styles.userVideo} muted ref={userVideo} autoPlay />
-        <video className={styles.userVideo} muted ref={myVideo} autoPlay />
+        <video className={styles.userVideo} ref={userVideo} autoPlay />
+        <video className={styles.userVideo} ref={myVideo} autoPlay />
       </div>
 
-      <div className={styles.vidChatButtons}>
-        <ToggleButton
-          value="MicOff"
-          onChange={() => {
-            setMute(mute => !mute);
-          }}
-        >
-          {mute ? <MicOffIcon /> : <MicIcon />}
-        </ToggleButton>
-
-        <ToggleButton
-          value="VideoOff"
-          onChange={() => {
-
-            setVideo(video => !video);
-          }}
-        >
-          {video ? <VideocamOffIcon /> : <VideocamIcon />}
-        </ToggleButton>
-      </div>
     </>
   )
 }

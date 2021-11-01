@@ -73,13 +73,13 @@ const CreatePost = () => {
 
   const savePost = () => {
     const body = new FormData()
-    body.append("file", file)
-    console.log(body.get('file'))
+    body.append("file", '')
     body.append("title", title)
     body.append("body", desc)
     axios.post("/api/blogs", body)
       .then(res => {
         console.log(res);
+        history.push("/blogs")
       }).catch(err => {
         console.log(err);
       })

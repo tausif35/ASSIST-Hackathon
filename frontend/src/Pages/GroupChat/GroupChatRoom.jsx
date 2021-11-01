@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import styles from "./GroupChat.module.css";
 import io from "socket.io-client";
 import axios from "../../Helper/axios";
 import Cookies from "universal-cookie";
-import Chat from "../../Components/Chat/Chat";
 import { useHistory } from "react-router-dom";
 import GroupChat from "../../Components/Chat/GroupChat";
+import styles from './GroupChatRoom.module.css'
 const GroupChatRoom = (props) => {
   let history = useHistory();
   const cookies = new Cookies();
@@ -16,7 +15,7 @@ const GroupChatRoom = (props) => {
   const [userId, setUserId] = useState("");
   const userIdRef = useRef();
   const socket = useRef(io(`http://${window.location.hostname}:5000`));
-  const roomId=props.match.params.id
+  const roomId = props.match.params.id
   const onStartFunction = () => {
     const role = cookies.get("assistr");
     let room;
@@ -62,7 +61,7 @@ const GroupChatRoom = (props) => {
   };
 
   const buttonClicked = () => {
-    const room= props.match.params.id;
+    const room = props.match.params.id;
     const messageObject = {
       date: new Date().toLocaleString(),
       senderId: userId,
@@ -73,7 +72,7 @@ const GroupChatRoom = (props) => {
     };
     if (value.trim() === "") {
     } else {
-      
+
       socket.current.emit("sendGroup", messageObject);
       setValue("");
     }
@@ -81,17 +80,17 @@ const GroupChatRoom = (props) => {
 
   return (
     <div className={styles.secondDiv}>
-        <GroupChat
-          senderName={senderName}
-          type={"group"}
-          name={props.match.params.id}
-          messages={messages}
-          value={value}
-          buttonClicked={buttonClicked}
-          updateInputValue={updateInputValue}
-          userId={userId}
-        />
-      </div>
+      <GroupChat
+        senderName={senderName}
+        type={"group"}
+        name={props.match.params.id}
+        messages={messages}
+        value={value}
+        buttonClicked={buttonClicked}
+        updateInputValue={updateInputValue}
+        userId={userId}
+      />
+    </div>
   )
 }
 
