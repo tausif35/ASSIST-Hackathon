@@ -40,8 +40,8 @@ function GroupChat(props) {
 
   return (
     <div className={styles.chatUser}>
-      <div className={styles.chatTopbar}>
-        <h1>{props.name}</h1>
+      <div className={styles.gcchatTopbar}>
+        <h1 className={styles.gcName}>{props.name}</h1>
       </div>
       {props.name === "" ? (
         <div className={styles.errorDiv}>
